@@ -10,6 +10,10 @@ function ajustaTamanhoPalcoJogo() {
 ajustaTamanhoPalcoJogo()
 
 function posicaoRandomica() {
+    //remover mosca anterior (caso exista)
+    if (document.getElementById('fly')) {
+        document.getElementById('fly').remove()
+    }
 
     var posicaoX = Math.floor(Math.random() * largura) - 90
     var posicaoY = Math.floor(Math.random() * altura) - 90
@@ -27,6 +31,7 @@ function posicaoRandomica() {
     fly.style.left = posicaoX + 'px'
     fly.style.top = posicaoY + 'px'
     fly.style.position = 'absolute'
+    fly.id = 'fly'
 
     document.body.appendChild(fly)
 }
