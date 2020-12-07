@@ -23,7 +23,7 @@ function posicaoRandomica() {
 
     var fly = document.createElement('img')
     fly.src = 'img/mosca.png'
-    fly.className = 'fly1'
+    fly.className = tamanhoAleatorio() + ' ' + ladoAleatorio()
     fly.style.left = posicaoX + 'px'
     fly.style.top = posicaoY + 'px'
     fly.style.position = 'absolute'
@@ -31,3 +31,25 @@ function posicaoRandomica() {
     document.body.appendChild(fly)
 }
 
+function tamanhoAleatorio() {
+    var classe = Math.floor(Math.random() * 3)
+    switch (classe) {
+        case 0:
+            return 'fly1'
+        case 1:
+            return 'fly2'
+        case 2:
+            return 'fly3'
+    }
+    console.log(classe)
+}
+
+function ladoAleatorio() {
+    var classe = Math.floor(Math.random() * 2)
+    switch (classe) {
+        case 0:
+            return 'ladoA'
+        case 1:
+            return 'ladoB'
+    }
+}
