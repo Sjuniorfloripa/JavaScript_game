@@ -1,5 +1,23 @@
 var altura = 0
 var largura = 0
+var life = 3
+var time = 30
+var nivel = window.location.search
+var createFlyTime = 1500
+
+nivel = nivel.replace('?', '')
+
+if (nivel === 'normal') {
+    //1500 milisegundos
+    createFlyTime = 1500
+} else if (nivel === 'dificil') {
+    // 1000 milisegundos
+    createFlyTime = 1000
+} else if (nivel === 'chucknorris') {
+    // 750 milisegundos
+    createFlyTime = 750
+}
+
 
 function ajustaTamanhoPalcoJogo() {
 
@@ -9,10 +27,29 @@ function ajustaTamanhoPalcoJogo() {
 }
 ajustaTamanhoPalcoJogo()
 
+var chronometer = setInterval(function () {
+    time -= 1
+    if (time < 0) {
+        clearInterval(chronometer)
+        clearInterval(createFly)
+        window.location.href = 'victory.html'
+    } else {
+        document.getElementById('chronometer').innerHTML = time
+    }
+}, 1000)
+
 function posicaoRandomica() {
     //remover mosca anterior (caso exista)
     if (document.getElementById('fly')) {
         document.getElementById('fly').remove()
+
+        if (life < 1) {
+            window.location.href = 'game_over.html'
+        } else {
+            document.getElementById('L' + life).src = "img/coracao_vazio.png"
+            life--
+        }
+
     }
 
     var posicaoX = Math.floor(Math.random() * largura) - 90
@@ -32,6 +69,9 @@ function posicaoRandomica() {
     fly.style.top = posicaoY + 'px'
     fly.style.position = 'absolute'
     fly.id = 'fly'
+    fly.onclick = function () {
+        this.remove()
+    }
 
     document.body.appendChild(fly)
 }

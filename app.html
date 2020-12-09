@@ -12,17 +12,17 @@
 <body onresize="ajustaTamanhoPalcoJogo()">
     <div class="UI">
         <div class="life">
-            <img src="img/coracao_vazio.png">
-            <img src="img/coracao_cheio.png">
-            <img src="img/coracao_cheio.png">
+            <img id="L1" src="img/coracao_cheio.png">
+            <img id="L2" src="img/coracao_cheio.png">
+            <img id="L3" src="img/coracao_cheio.png">
         </div>
-        <div class="chronometer">Tempo restante: ?</div>
+        <div class="chronometer">Tempo restante: <span id="chronometer"></span></div>
     </div>
     <script>
-    
-    setInterval(function name() {
+    document.getElementById('chronometer').innerHTML = time
+    var createFly = setInterval(function name() {
         posicaoRandomica()
-    }, 1000)
+    }, createFlyTime)
     </script>
 </body>
 
